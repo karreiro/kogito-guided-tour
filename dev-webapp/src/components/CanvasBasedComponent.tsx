@@ -14,21 +14,24 @@
  * limitations under the License.
  */
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-import "./css/reset.sass";
-import "./css/index.sass";
+const CanvasBasedComponent = () => {
+  const canvas = useRef(null);
 
-import UserAPIPage from "./components/UserAPIPage";
-import "kogito-guided-tour/dist/index.css";
+  useEffect(() => {
+    // TODO: (!!!)
+    // const c = canvas.current;
+    // const ctx = c.getContext("2d");
+    console.log("mounted.");
+  }, []);
 
-const App = () => {
   return (
     <div>
-      <UserAPIPage />
-      {/* <KogitoGuidedTour /> */}
+      <h2>Canvas based component</h2>
+      <canvas ref={canvas} width={400} height={300} />
     </div>
   );
 };
 
-export default App;
+export default CanvasBasedComponent;

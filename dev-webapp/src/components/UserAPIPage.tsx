@@ -16,19 +16,21 @@
 
 import React from "react";
 
-import "./css/reset.sass";
-import "./css/index.sass";
+import HTMLBasedComponent from "./HTMLBasedComponent";
+import CanvasBasedComponent from "./CanvasBasedComponent";
 
-import UserAPIPage from "./components/UserAPIPage";
-import "kogito-guided-tour/dist/index.css";
+import "./UserAPIPage.sass";
 
-const App = () => {
+const UserAPIPage = () => {
   return (
-    <div>
-      <UserAPIPage />
-      {/* <KogitoGuidedTour /> */}
+    <div className="user-api-page">
+      <h1>Components explorer</h1>
+      <div className="components">
+        <HTMLBasedComponent />
+        <CanvasBasedComponent />
+      </div>
     </div>
   );
 };
 
-export default App;
+export default UserAPIPage;

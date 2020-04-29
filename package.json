@@ -11,7 +11,7 @@
     "start": "microbundle-crl watch --no-compress --css-modules false --format modern,cjs",
     "test": "run-s build test:lint test:unit",
     "dev:start": "yarn start & cd \"dev-webapp\" && yarn start",
-    "test:lint": "eslint .",
+    "test:lint": "eslint . -c .eslintrc",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom"
   },
   "peerDependencies": {

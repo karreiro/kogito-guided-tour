@@ -16,20 +16,46 @@
 
 import React, { useEffect, useRef } from "react";
 
+import "./CanvasBasedComponent.sass";
+
 const CanvasBasedComponent = () => {
-  const canvas = useRef(null);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
-    // TODO: (!!!)
-    // const c = canvas.current;
-    // const ctx = c.getContext("2d");
-    console.log("mounted.");
+    const canvas: HTMLCanvasElement = canvasRef.current!;
+    const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
+
+    const dpr = window.devicePixelRatio || 1;
+
+    // Scale for high resolution displays
+    context.scale(dpr, dpr);
+
+    // Draw background
+    const canvasWidth = canvas.width / dpr;
+    const canvasHeight = canvas.height / dpr;
+
+    context.fillStyle = "#FFFFFF";
+    context.strokeStyle = "#333333";
+    context.fillRect(0, 0, canvasWidth, canvasHeight);
+    context.strokeRect(0, 0, canvasWidth, canvasHeight);
+
+    // Draw rectangle
+    const rectWidth = 140 / dpr;
+    const rectHeight = 60 / dpr;
+    const x = 60 / dpr;
+    const y = 60 / dpr;
+
+    context.fillStyle = "#EEEEEE";
+    context.strokeStyle = "#222222";
+    context.fillRect(x, y, rectWidth, rectHeight);
+    context.strokeRect(x, y, rectWidth, rectHeight);
   }, []);
 
   return (
-    <div>
+    <div className="component">
       <h2>Canvas based component</h2>
-      <canvas ref={canvas} width={400} height={300} />
+      <canvas ref={canvasRef} width={400} height={300} />
+      <button>Start Guided Tour</button>
     </div>
   );
 };

@@ -29,8 +29,11 @@ export class KogitoGuidedTour {
   }
 
   // TODO: KOGITO-1991
-  start(tutorialLabel: string): void {
-    console.log("TODO: start", tutorialLabel);
+  // start(tutorialLabel: string): void {
+  //   console.log("TODO: start", tutorialLabel);
+  // }
+  start() {
+    console.log("Start!!");
   }
 
   // TODO: KOGITO-1991

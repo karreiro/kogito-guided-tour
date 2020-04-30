@@ -14,30 +14,47 @@
  * limitations under the License.
  */
 
-$base-color: #7e7261
-$background-color: #fffae5
+@import ../css/index.sass
+
+$strong-color: #7e7261
+$light-color: #fffae5
 
 .user-api-page
-  background: $background-color
+  background: $light-color
   height: calc(100vh - 68px)
   padding: 32px
   overflow-y: auto
 
   .box
-    border: 5px solid $base-color
-    color: $base-color
-    box-shadow: -10px 10px $base-color
+    border: 5px solid $strong-color
+    color: $strong-color
+    box-shadow: -10px 10px $strong-color
     font-weight: bold
     padding: 32px
-    background: rgba(255, 255, 255, .5)
+    background: rgba(255, 255, 255, .75)
     overflow: hidden
 
-  h1
+  & > h1
     @extend .box
     font-size: 32px
     width: 500px
     margin: 0 auto
     text-align: center
+  
+  button
+    @include default-font
+    color: $light-color
+    background-color: $strong-color
+    border: none
+    outline: none
+    font-weight: bold
+    font-size: 16px
+    padding: 12px 24px
+    margin-top: 12px
+    cursor: pointer
+    display: block
+    &:hover
+      filter: brightness(.9)
 
   .components
     margin-top: 24px
@@ -45,11 +62,12 @@ $background-color: #fffae5
     flex-direction: row
     justify-content: center
 
-    & > div
+    .component
       @extend .box
       width: 40%
       height: 600px
       margin: 24px
       h2
         padding-bottom: 12px
-        border-bottom: 3px solid $base-color
+        margin-bottom: 12px
+        border-bottom: 3px solid $strong-color

@@ -16,17 +16,24 @@
 
 import React from "react";
 
-import "./css/reset.sass";
-import "./css/index.sass";
+import "./HighlightLayer.sass";
 
-import UserAPIPage from "./components/UserAPIPage";
+const HighlightLayer = () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const x = 85;
+  const y = 570;
+  const rectWidth = 230;
+  const reactHeight = 65;
 
-const App = () => {
+  const params = `M0 0     H${width} V${height} H0Z 
+                  M${x} ${y} V${y + reactHeight} H${x + rectWidth} V${y}Z`;
+
   return (
-    <div>
-      <UserAPIPage />
-    </div>
+    <svg className="svg-layer">
+      <path d={params} style={{ fill: "rgba(0, 0, 0, .75)" }} />
+    </svg>
   );
 };
 
-export default App;
+export default HighlightLayer;

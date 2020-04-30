@@ -16,10 +16,16 @@
 
 import React from "react";
 
+import "./HTMLBasedComponent.sass";
+
 const HTMLBasedComponent = () => {
   return (
     <div className="component">
       <h2>HTML based component</h2>
+      <div className="html-component">
+        <div className="square"></div>
+      </div>
+      <button>Start Guided Tour</button>
     </div>
   );
 };

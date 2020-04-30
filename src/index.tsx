@@ -14,13 +14,6 @@
  * limitations under the License.
  */
 
-import * as React from "react";
-import { Dialog } from "./components/Dialog";
+import { KogitoGuidedTour } from "./api/KogitoGuidedTour";
 
-export const KogitoGuidedTour = () => {
-  return (
-    <div>
-      <Dialog />
-    </div>
-  );
-};
+export default KogitoGuidedTour;

@@ -18,16 +18,20 @@ import React from "react";
 
 import HTMLBasedComponent from "./HTMLBasedComponent";
 import CanvasBasedComponent from "./CanvasBasedComponent";
+import HighlightLayer from "./HighlightLayer";
 
 import "./UserAPIPage.sass";
 
 const UserAPIPage = () => {
   return (
-    <div className="user-api-page">
-      <h1>Components explorer</h1>
-      <div className="components">
-        <HTMLBasedComponent />
-        <CanvasBasedComponent />
+    <div>
+      <HighlightLayer />
+      <div className="user-api-page">
+        <h1>Components explorer</h1>
+        <div className="components">
+          <HTMLBasedComponent />
+          <CanvasBasedComponent />
+        </div>
       </div>
     </div>
   );

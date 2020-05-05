@@ -14,14 +14,35 @@
  * limitations under the License.
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./css/reset.sass";
 import "./css/index.sass";
 
 import UserAPIPage from "./components/UserAPIPage";
+import { KogitoGuidedTour } from "kogito-guided-tour";
+
+import "kogito-guided-tour/index.css";
 
 const App = () => {
+  useEffect(() => {
+    const tour1 = new KogitoGuidedTour();
+    // const tour2 = new KogitoGuidedTour();
+    // const tour3 = new KogitoGuidedTour();
+
+    tour1.start();
+    // tour1.start();
+
+    // tour2.start();
+    // tour2.start();
+    // tour2.start();
+
+    // tour3.start();
+    // tour3.start();
+    // tour3.start();
+    // tour3.start();
+  });
+
   return (
     <div>
       <UserAPIPage />

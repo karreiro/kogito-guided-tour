@@ -26,7 +26,7 @@ const HighlightLayer = () => {
   const rectWidth = 230;
   const reactHeight = 65;
 
-  const params = `M0 0     H${width} V${height} H0Z 
+  const params = `M0 0 H${width} V${height} H0Z 
                   M${x} ${y} V${y + reactHeight} H${x + rectWidth} V${y}Z`;
 
   return (

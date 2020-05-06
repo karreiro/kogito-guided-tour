@@ -19,7 +19,7 @@ import React from "react";
 import HTMLBasedComponent from "./HTMLBasedComponent";
 import CanvasBasedComponent from "./CanvasBasedComponent";
 
-import "./UserAPIPage.sass";
+import "./SamplePage.sass";
 
 const UserAPIPage = () => {
   return (

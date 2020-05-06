@@ -15,10 +15,13 @@
  */
 
 import React, { useState } from "react";
+
+import { NavigationControls } from "./NavigationControls";
+
 import "./Dialog.sass";
 
 export const Dialog = () => {
-  const [isEnabled] = useState(false);
+  const [isEnabled] = useState(true);
 
   function getDialogClass() {
     if (isEnabled) {
@@ -31,6 +34,7 @@ export const Dialog = () => {
   return (
     <div className={getDialogClass()}>
       <h1>Welcome!</h1>
+      <NavigationControls />
     </div>
   );
 };

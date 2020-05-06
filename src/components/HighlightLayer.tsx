@@ -18,7 +18,7 @@ import React from "react";
 
 import "./HighlightLayer.sass";
 
-const HighlightLayer = () => {
+export const HighlightLayer = () => {
   const width = window.innerWidth;
   const height = window.innerHeight;
   const x = 85;
@@ -30,10 +30,8 @@ const HighlightLayer = () => {
                   M${x} ${y} V${y + reactHeight} H${x + rectWidth} V${y}Z`;
 
   return (
-    <svg className="svg-layer">
+    <svg className="kgt-svg-layer">
       <path d={params} style={{ fill: "rgba(0, 0, 0, .75)" }} />
     </svg>
   );
 };
-
-export default HighlightLayer;

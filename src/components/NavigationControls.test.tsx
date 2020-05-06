@@ -1,12 +1,12 @@
 /*
  * Copyright 2020 Red Hat, Inc. and/or its affiliates.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,22 +14,10 @@
  * limitations under the License.
  */
 
-.kgt-dialog
-  position: fixed
-  width: 500px
-  height: 200px
-  left: calc(50% - 290px)
-  top: calc(50% - 120px)
-  border: 5px solid #444444
-  color: #444444
-  box-shadow: -10px 10px rgba(0, 0, 0, .25)
-  font-weight: bold
-  padding: 32px
-  background: #FFFFFF
-  overflow: hidden
-  
-.kgt-dialog--enabled
-    display: block
+import { NavigationControls } from "./NavigationControls";
 
-.kgt-dialog--disabled
-    display: none
+describe("NavigationControls", () => {
+  it("is truthy", () => {
+    expect(NavigationControls).toBeTruthy();
+  });
+});

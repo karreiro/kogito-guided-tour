@@ -44,10 +44,18 @@ function getSampleTutorial() {
     },
     {
       selector: new CoodinateSelector(1, 1),
-      position: "right",
+      position: "bottom",
       mode: new DemoMode(),
       content: () => {
         return <div>Second step</div>;
+      },
+    },
+    {
+      selector: new CoodinateSelector(1, 1),
+      position: "right",
+      mode: new DemoMode(),
+      content: () => {
+        return <div>Third step</div>;
       },
     },
   ]);

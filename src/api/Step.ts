@@ -17,9 +17,11 @@
 import { Selector } from "./Selector";
 import { Mode } from "./Mode";
 
-export interface Step {
-  content: React.ReactNode | ((args: object) => React.ReactNode);
-  selector: Selector;
-  position: "top" | "right" | "bottom" | "left";
-  mode: Mode;
+export class Step {
+  constructor(
+    public content: React.ReactNode | ((args: object) => React.ReactNode),
+    public selector: Selector,
+    public position: "top" | "right" | "bottom" | "left",
+    public mode: Mode
+  ) {}
 }

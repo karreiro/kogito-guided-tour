@@ -28,6 +28,7 @@
   "rules": {
     "no-console": "off",
     "no-useless-constructor": 0,
+    "allowTernary": true,
     "space-before-function-paren": 0,
     "react/prop-types": 0,
     "react/jsx-handler-names": 0,

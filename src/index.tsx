@@ -22,15 +22,14 @@ import { Event } from "./api/Event";
 import { DemoMode } from "./api/Mode";
 import { CoodinateSelector } from "./api/Selector";
 import { Dialog } from "./components/Dialog";
+import { GuidedTourDomHelper } from "./core/GuidedTourDomHelper";
 
 class KogitoGuidedTour {
-  private GUIDED_TOUR_SELECTOR = "kogito-guided-tour-" + KogitoGuidedTour.randomHash();
-
   private currentStepIndex = 0;
 
   private tutorials: Tutorial[] = [];
 
-  private guidedTourElement: HTMLElement | null = null;
+  private domHelper = new GuidedTourDomHelper();
 
   // TODO: KOGITO-1991
   start(tutorialLabel: string): void {
@@ -51,7 +50,7 @@ class KogitoGuidedTour {
 
   /**
    * Setup the Guided Tour component on a {@link HTMLElement} at the
-   * {@link document} level.
+   * `document` level.
    *
    * Notice: When this method is called from a `React` app, is must be called
    * into a `React.useEffect` function or a `React.Component#componentDidMount`
@@ -66,7 +65,7 @@ class KogitoGuidedTour {
    * ```
    */
   setup() {
-    ReactDOM.render(<Dialog />, this.getGuidedTourElement()); // TODO: render on useEffect (?)
+    ReactDOM.render(<Dialog />, this.domHelper.getGuidedTourElement());
   }
 
   /**
@@ -74,29 +73,8 @@ class KogitoGuidedTour {
    * {@link HTMLElement} created by the {@link setup} method.
    */
   teardown() {
-    const guidedTourElement = this.getGuidedTourElement();
+    const guidedTourElement = this.domHelper.getGuidedTourElement();
     guidedTourElement?.parentElement?.removeChild(guidedTourElement);
-  }
-
-  private getGuidedTourElement() {
-    this.guidedTourElement = this.guidedTourElement || this.findGuidedTourElement();
-    return this.guidedTourElement;
-  }
-
-  private findGuidedTourElement() {
-    const existingElement = document.getElementById("#" + this.GUIDED_TOUR_SELECTOR);
-    return existingElement || this.createGuidedTourElement();
-  }
-
-  private createGuidedTourElement() {
-    const newElement = document.createElement("div");
-    newElement.id = this.GUIDED_TOUR_SELECTOR;
-    document.body.appendChild(newElement);
-    return newElement;
-  }
-
-  private static randomHash() {
-    return Math.random().toString(36).substr(2, 9);
   }
 }
 

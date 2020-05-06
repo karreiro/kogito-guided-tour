@@ -14,13 +14,31 @@
  * limitations under the License.
  */
 
-.kogito-guided-tour-dialog
+// --------------------------------
+// Theme
+// --------------------------------
+
+.kgt-dialog
   position: fixed
   width: 500px
   height: 200px
   left: calc(50% - 290px)
   top: calc(50% - 120px)
-  border-radius: 50px 65px 50px 65px
-  color: rgba(0, 0, 0, 0.75)
-  background: #ffb938
-  padding: 20px 43px
+  border: 5px solid #444444
+  color: #444444
+  box-shadow: -10px 10px rgba(0, 0, 0, .25)
+  font-weight: bold
+  padding: 32px
+  background: #FFFFFF
+  overflow: hidden
+
+
+// --------------------------------
+// Mechanisms
+// --------------------------------
+
+.kgt-dialog--disabled
+  display: none
+  
+.kgt-dialog--enabled
+  display: block

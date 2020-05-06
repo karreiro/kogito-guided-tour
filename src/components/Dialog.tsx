@@ -14,12 +14,22 @@
  * limitations under the License.
  */
 
-import * as React from "react";
+import React, { useState } from "react";
 import "./Dialog.sass";
 
 export const Dialog = () => {
+  const [isEnabled] = useState(false);
+
+  function getDialogClass() {
+    if (isEnabled) {
+      return "kgt-dialog kgt-dialog--enabled";
+    } else {
+      return "kgt-dialog kgt-dialog--disabled";
+    }
+  }
+
   return (
-    <div className="kogito-guided-tour-dialog">
+    <div className={getDialogClass()}>
       <h1>Welcome!</h1>
     </div>
   );

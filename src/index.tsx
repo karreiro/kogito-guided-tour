@@ -19,14 +19,23 @@ import ReactDOM from "react-dom";
 
 import { Tutorial } from "./api/Tutorial";
 import { Event } from "./api/Event";
+import { DemoMode } from "./api/Mode";
+import { CoodinateSelector } from "./api/Selector";
 import { Dialog } from "./components/Dialog";
 
-export class KogitoGuidedTour {
+class KogitoGuidedTour {
   private GUIDED_TOUR_SELECTOR = "kogito-guided-tour-" + KogitoGuidedTour.randomHash();
 
   private currentStepIndex = 0;
+
   private tutorials: Tutorial[] = [];
+
   private guidedTourElement: HTMLElement | null = null;
+
+  // TODO: KOGITO-1991
+  start(tutorialLabel: string): void {
+    console.log("TODO: start tutorial", tutorialLabel);
+  }
 
   // TODO: KOGITO-1990
   registerTutorial(tutorial: Tutorial): void {
@@ -35,14 +44,38 @@ export class KogitoGuidedTour {
   }
 
   // TODO: KOGITO-1991
-  start() {
-    ReactDOM.render(<Dialog />, this.getGuidedTourElement());
-  }
-
-  // TODO: KOGITO-1991
   update(event: Event): void {
     this.currentStepIndex = this.currentStepIndex + 1;
     console.log("TODO: start", event);
+  }
+
+  /**
+   * Setup the Guided Tour component on a {@link HTMLElement} at the
+   * {@link document} level.
+   *
+   * Notice: When this method is called from a `React` app, is must be called
+   * into a `React.useEffect` function or a `React.Component#componentDidMount`
+   * function , e.g.:
+   *
+   * ```typescript
+   * useEffect(() => {
+   *   const tour = new KogitoGuidedTour();
+   *   tour.setup();
+   *   return () => tour.teardown();
+   * }, []);
+   * ```
+   */
+  setup() {
+    ReactDOM.render(<Dialog />, this.getGuidedTourElement()); // TODO: render on useEffect (?)
+  }
+
+  /**
+   * Teardown the Guided Decision tour component, by removing the
+   * {@link HTMLElement} created by the {@link setup} method.
+   */
+  teardown() {
+    const guidedTourElement = this.getGuidedTourElement();
+    guidedTourElement?.parentElement?.removeChild(guidedTourElement);
   }
 
   private getGuidedTourElement() {
@@ -66,3 +99,6 @@ export class KogitoGuidedTour {
     return Math.random().toString(36).substr(2, 9);
   }
 }
+
+// TODO: export the whole public API
+export { KogitoGuidedTour, Tutorial, DemoMode, CoodinateSelector };

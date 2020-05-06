@@ -27,6 +27,15 @@ export class QuerySelector implements Selector {
   }
 }
 
+// TODO: remove me (?)
+export class CoodinateSelector implements Selector {
+  constructor(public x: number, public y: number) {}
+
+  getCoordinate(): [number, number] {
+    return [this.x, this.y];
+  }
+}
+
 export class GraphSelector implements Selector {
   constructor(public nodeName: string) {}
 

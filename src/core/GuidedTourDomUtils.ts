@@ -15,14 +15,9 @@
  */
 
 export class GuidedTourDomUtils {
-  private elementId: string;
+  private elementId = "kgt-parent";
 
-  private guidedTourElement: HTMLElement | null;
-
-  constructor() {
-    this.elementId = "kgt-parent-" + GuidedTourDomUtils.randomHash();
-    this.guidedTourElement = null;
-  }
+  private guidedTourElement?: HTMLElement;
 
   public getGuidedTourHTMLElement() {
     this.guidedTourElement = this.guidedTourElement || this.findGuidedTourElement();
@@ -44,9 +39,5 @@ export class GuidedTourDomUtils {
   private createDivHTMLElement() {
     const div = document.createElement("div");
     return document.body.appendChild(div);
-  }
-
-  private static randomHash() {
-    return Math.random().toString(36).substr(2, 9);
   }
 }

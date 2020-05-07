@@ -14,22 +14,26 @@
  * limitations under the License.
  */
 
-import React, { useState } from "react";
+import React, { useContext } from "react";
+
+import { CurrentTutorialContext } from "../contexts/CurrentTutorialContext";
+import { CurrentStepContext } from "../contexts/CurrentStepContext";
 
 import "./NavigationControls.sass";
 
 export const NavigationControls = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [numberOfSteps] = useState(5);
+  const { currentTutorial } = useContext(CurrentTutorialContext);
+  const { currentStep, setCurrentStep } = useContext(CurrentStepContext);
+  const numberOfSteps = currentTutorial?.steps.length!;
   const enabledButtonClass = "kgt-nav-controls__button";
   const disabledButtonClass = "kgt-nav-controls__button kgt-nav-controls__button--disabled";
 
   function getPrevButtonClassName() {
-    return currentStep === 0 ? disabledButtonClass : enabledButtonClass;
+    return currentStep > 0 ? enabledButtonClass : disabledButtonClass;
   }
 
   function getNextButtonClassName() {
-    return currentStep === numberOfSteps ? disabledButtonClass : enabledButtonClass;
+    return currentStep < numberOfSteps - 1 ? enabledButtonClass : disabledButtonClass;
   }
 
   function prev() {
@@ -46,7 +50,7 @@ export const NavigationControls = () => {
         ←
       </button>
       <div className="kgt-nav-controls__step-number">
-        {currentStep}/{numberOfSteps}
+        {currentStep + 1}/{numberOfSteps}
       </div>
       <button onClick={next} className={getNextButtonClassName()}>
         →

@@ -21,32 +21,14 @@ import { Tutorial } from "./api/Tutorial";
 import { Event } from "./api/Event";
 import { DemoMode } from "./api/Mode";
 import { CoodinateSelector } from "./api/Selector";
-import { Dialog } from "./components/Dialog";
+import { GuidedTour } from "./components/GuidedTour";
 import { GuidedTourDomUtils } from "./core/GuidedTourDomUtils";
+import { GuidedTourEventBus } from "./core/GuidedTourEventBus";
 
 class KogitoGuidedTour {
-  private currentStepIndex = 0;
+  private static domUtils = new GuidedTourDomUtils();
 
-  private tutorials: Tutorial[] = [];
-
-  private domUtils = new GuidedTourDomUtils();
-
-  // TODO: KOGITO-1991
-  start(tutorialLabel: string): void {
-    console.log("TODO: start tutorial", tutorialLabel);
-  }
-
-  // TODO: KOGITO-1990
-  registerTutorial(tutorial: Tutorial): void {
-    this.tutorials.push(tutorial);
-    console.log("TODO: register tutorial", tutorial);
-  }
-
-  // TODO: KOGITO-1991
-  update(event: Event): void {
-    this.currentStepIndex = this.currentStepIndex + 1;
-    console.log("TODO: start", event);
-  }
+  private static eventBus = new GuidedTourEventBus();
 
   /**
    * Setup the Guided Tour component on a {@link HTMLElement} at the
@@ -58,26 +40,43 @@ class KogitoGuidedTour {
    *
    * ```typescript
    * useEffect(() => {
-   *   const tour = new KogitoGuidedTour();
-   *   tour.setup();
-   *   return () => tour.teardown();
+   *    KogitoGuidedTour.setup();
+   *    return () => KogitoGuidedTour.teardown();
    * }, []);
    * ```
    */
-  setup() {
-    // TODO: Render
-    // <KogitoGuidedTourParent> with globals, dialog, etc
-    // Dialog state: step
-    ReactDOM.render(<Dialog />, this.domUtils.getGuidedTourHTMLElement());
+  static setup() {
+    ReactDOM.render(<GuidedTour />, this.domUtils.getGuidedTourHTMLElement(), () => {
+      this.eventBus.enableBus();
+    });
   }
 
   /**
    * Teardown the Guided Decision tour component, by removing the
    * {@link HTMLElement} created by the {@link setup} method.
    */
-  teardown() {
+  static teardown() {
     const guidedTourElement = this.domUtils.getGuidedTourHTMLElement();
     guidedTourElement?.parentElement?.removeChild(guidedTourElement);
+  }
+
+  /**
+   * Start a tutorial.
+   */
+  static start(tutorialLabel: string): void {
+    this.eventBus.startTutorial(tutorialLabel);
+  }
+
+  /**
+   * Register a tutorial.
+   */
+  static registerTutorial(tutorial: Tutorial): void {
+    this.eventBus.registerTutorial(tutorial);
+  }
+
+  // TODO: KOGITO-1991
+  static update(event: Event): void {
+    console.log("TODO: start", event);
   }
 }
 

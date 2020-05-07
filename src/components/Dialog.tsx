@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { NavigationControls } from "./NavigationControls";
+import { CurrentTutorialContext } from "../contexts/CurrentTutorialContext";
+import { CurrentStepContext } from "../contexts/CurrentStepContext";
 
 import "./Dialog.sass";
 
 export const Dialog = () => {
   const [isEnabled] = useState(true);
+  const { currentTutorial } = useContext(CurrentTutorialContext);
+  const { currentStep } = useContext(CurrentStepContext);
 
   function getDialogClass() {
     if (isEnabled) {
@@ -31,9 +35,21 @@ export const Dialog = () => {
     }
   }
 
+  function getStep() {
+    const step = currentTutorial?.steps[currentStep];
+    const content = step?.content;
+
+    if (typeof content === "function") {
+      return content({});
+    } else {
+      return content;
+    }
+  }
+
   return (
     <div className={getDialogClass()}>
       <h1>Welcome!</h1>
+      <div>{getStep()}</div>
       <NavigationControls />
     </div>
   );

@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-export class GuidedTourDomHelper {
+export class GuidedTourDomUtils {
   private elementId: string;
 
   private guidedTourElement: HTMLElement | null;
 
   constructor() {
-    this.elementId = "kgt-parent-" + GuidedTourDomHelper.randomHash();
+    this.elementId = "kgt-parent-" + GuidedTourDomUtils.randomHash();
     this.guidedTourElement = null;
   }
 
-  public getGuidedTourElement() {
+  public getGuidedTourHTMLElement() {
     this.guidedTourElement = this.guidedTourElement || this.findGuidedTourElement();
     return this.guidedTourElement;
   }

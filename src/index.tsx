@@ -22,14 +22,14 @@ import { Event } from "./api/Event";
 import { DemoMode } from "./api/Mode";
 import { CoodinateSelector } from "./api/Selector";
 import { Dialog } from "./components/Dialog";
-import { GuidedTourDomHelper } from "./core/GuidedTourDomHelper";
+import { GuidedTourDomUtils } from "./core/GuidedTourDomUtils";
 
 class KogitoGuidedTour {
   private currentStepIndex = 0;
 
   private tutorials: Tutorial[] = [];
 
-  private domHelper = new GuidedTourDomHelper();
+  private domUtils = new GuidedTourDomUtils();
 
   // TODO: KOGITO-1991
   start(tutorialLabel: string): void {
@@ -65,7 +65,10 @@ class KogitoGuidedTour {
    * ```
    */
   setup() {
-    ReactDOM.render(<Dialog />, this.domHelper.getGuidedTourElement());
+    // TODO: Render
+    // <KogitoGuidedTourParent> with globals, dialog, etc
+    // Dialog state: step
+    ReactDOM.render(<Dialog />, this.domUtils.getGuidedTourHTMLElement());
   }
 
   /**
@@ -73,7 +76,7 @@ class KogitoGuidedTour {
    * {@link HTMLElement} created by the {@link setup} method.
    */
   teardown() {
-    const guidedTourElement = this.domHelper.getGuidedTourElement();
+    const guidedTourElement = this.domUtils.getGuidedTourHTMLElement();
     guidedTourElement?.parentElement?.removeChild(guidedTourElement);
   }
 }

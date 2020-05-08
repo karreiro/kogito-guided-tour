@@ -27,11 +27,23 @@
   padding: 32px
   background: #FFFFFF
   overflow: hidden
-  h1
+  transition: top .5s ease-out, left  .5s ease-out
+  transform: rotate3d(0, 0, 0, 0deg)
+  z-index: 2
+  &__title
     border-bottom: 2px solid #444444
     padding-bottom: 15px
     margin-bottom: 15px
-  
+  &__icon--error
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTEyIDIyQzYuNDc3IDIyIDIgMTcuNTIzIDIgMTJTNi40NzcgMiAxMiAyczEwIDQuNDc3IDEwIDEwLTQuNDc3IDEwLTEwIDEwem0wLTExLjQxNEw5LjE3MiA3Ljc1NyA3Ljc1NyA5LjE3MiAxMC41ODYgMTJsLTIuODI5IDIuODI4IDEuNDE1IDEuNDE1TDEyIDEzLjQxNGwyLjgyOCAyLjgyOSAxLjQxNS0xLjQxNUwxMy40MTQgMTJsMi44MjktMi44MjgtMS40MTUtMS40MTVMMTIgMTAuNTg2eiIvPjwvc3ZnPg==")
+    width: 72px
+    height: 72px
+    background-size: 72px
+    margin: 24px auto
+    opacity: .75
+  &__message--error
+    text-align: center
+
 .kgt-dialog--enabled
     display: block
 

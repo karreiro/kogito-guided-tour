@@ -16,12 +16,18 @@
 
 import { Selector } from "./Selector";
 import { Mode } from "./Mode";
+import { DemoMode } from "..";
 
 export class Step {
   constructor(
     public content: React.ReactNode | ((args: object) => React.ReactNode),
     public selector: Selector,
-    public position: "top" | "right" | "bottom" | "left",
+    public highlightEnabled: boolean,
+    public position: "right" | "bottom" | "center",
     public mode: Mode
-  ) {}
+  ) {
+    this.highlightEnabled = false;
+    this.position = "center";
+    this.mode = new DemoMode();
+  }
 }

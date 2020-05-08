@@ -20,7 +20,7 @@ import ReactDOM from "react-dom";
 import { Tutorial } from "./api/Tutorial";
 import { Event } from "./api/Event";
 import { DemoMode } from "./api/Mode";
-import { CoodinateSelector } from "./api/Selector";
+import { NoneSelector, QuerySelector, GraphSelector } from "./api/Selector";
 import { GuidedTour } from "./components/GuidedTour";
 import { GuidedTourDomUtils } from "./core/GuidedTourDomUtils";
 import { GuidedTourEventBus } from "./core/GuidedTourEventBus";
@@ -81,4 +81,4 @@ class KogitoGuidedTour {
 }
 
 // TODO: export the whole public API
-export { KogitoGuidedTour, Tutorial, DemoMode, CoodinateSelector };
+export { KogitoGuidedTour, Tutorial, DemoMode, NoneSelector, QuerySelector, GraphSelector };

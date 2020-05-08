@@ -14,24 +14,34 @@
  * limitations under the License.
  */
 
-import React from "react";
+import React, { useContext } from "react";
 
 import "./HighlightLayer.sass";
 
+import { CurrentStepContext } from "../contexts/CurrentStepContext";
+import { CurrentTutorialContext } from "../contexts/CurrentTutorialContext";
+
 export const HighlightLayer = () => {
+  const { currentTutorial } = useContext(CurrentTutorialContext);
+  const { currentStep } = useContext(CurrentStepContext);
+  const step = currentTutorial?.steps[currentStep];
+  const highlightEnabled = step && step.highlightEnabled;
+  const rect = step?.selector.getReferenceRect(); // TODO: extract to outils
+
   const width = window.innerWidth;
   const height = window.innerHeight;
-  const x = 85;
-  const y = 570;
-  const rectWidth = 230;
-  const reactHeight = 65;
+  const padding = 10; // TODO: extract to global
+  const x = rect ? rect.x - padding : 0; // TODO: remove rect checks
+  const y = rect ? rect.y - padding : 0;
+  const rectWidth = rect ? rect.width + padding * 2 : 0;
+  const reactHeight = rect ? rect.height + padding * 2 : 0;
 
   const params = `M0 0 H${width} V${height} H0Z 
                   M${x} ${y} V${y + reactHeight} H${x + rectWidth} V${y}Z`;
 
   return (
-    <svg className="kgt-svg-layer">
-      <path d={params} style={{ fill: "rgba(0, 0, 0, .75)" }} />
+    <svg style={{ display: highlightEnabled ? "" : "none" }} className="kgt-svg-layer">
+      <path d={params} style={{ fill: "rgba(0, 0, 0, .5)" }} />
     </svg>
   );
 };

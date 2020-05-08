@@ -23,7 +23,7 @@ const HTMLBasedComponent = () => {
     <div className="component">
       <h2>HTML based component</h2>
       <div className="html-component">
-        <div className="square"></div>
+        <div id="html-rectangle" className="rectangle"></div>
       </div>
       <button>Start Guided Tour</button>
     </div>

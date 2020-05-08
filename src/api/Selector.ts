@@ -14,42 +14,77 @@
  * limitations under the License.
  */
 
-export interface Selector {
-  getCoordinate(): [number, number];
-}
+export type ReferenceRect = {
+  bottom: number;
+  height: number;
+  left: number;
+  right: number;
+  top: number;
+  width: number;
+  x: number;
+  y: number;
+};
 
-export class QuerySelector implements Selector {
-  constructor(public query: string) {}
+export class Selector {
+  private bottom = 0;
+  private height = 0;
+  private left = 0;
+  private right = 0;
+  private top = 0;
+  private width = 0;
+  private x = 0;
+  private y = 0;
 
-  // TODO: KOGITO-1986
-  getCoordinate(): [number, number] {
-    return [0, 0];
+  getReferenceRect(): ReferenceRect {
+    return {
+      bottom: this.bottom,
+      height: this.height,
+      left: this.left,
+      right: this.right,
+      top: this.top,
+      width: this.width,
+      x: this.x,
+      y: this.y,
+    };
   }
 }
 
-// TODO: remove me (?)
-export class CoodinateSelector implements Selector {
-  constructor(public x: number, public y: number) {}
+export class NoneSelector extends Selector {}
 
-  getCoordinate(): [number, number] {
-    return [this.x, this.y];
+export class QuerySelector extends Selector {
+  constructor(public query: string) {
+    super();
+  }
+
+  getReferenceRect(): ReferenceRect {
+    const domReference = document.querySelector(this.query);
+    if (domReference) {
+      return domReference.getBoundingClientRect();
+    } else {
+      return super.getReferenceRect();
+    }
   }
 }
 
-export class GraphSelector implements Selector {
-  constructor(public nodeName: string) {}
+export class GraphSelector extends Selector {
+  constructor(public nodeName: string, public supplier: (nodeName: string) => ReferenceRect) {
+    super();
+  }
 
-  // TODO: KOGITO-1988
-  getCoordinate(): [number, number] {
-    return [0, 0];
+  getReferenceRect(): ReferenceRect {
+    return { ...this.supplier(this.nodeName) };
   }
 }
 
-export class GridSelector implements Selector {
-  constructor(public cell: [number, number]) {}
+export class GridSelector extends Selector {
+  constructor(
+    public cellCoordinate: [number, number],
+    public supplier: (cellCoordinate: [number, number]) => ReferenceRect
+  ) {
+    super();
+  }
 
-  // TODO: KOGITO-1987
-  getCoordinate(): [number, number] {
-    return [this.cell[0], this.cell[1]];
+  getReferenceRect(): ReferenceRect {
+    return { ...this.supplier(this.cellCoordinate) };
   }
 }
